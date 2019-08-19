@@ -35,7 +35,7 @@ Marvel Store é um app feito para disponibilizar diversos quadrinhos puxados da 
   <h2>Possíveis Melhorias</h2>
   <p>
   •Todo o design e posicionamento de Views poderia ser melhorado, com toda a certeza.</br>
-  •Há uma *leve* falha de otimização no RecyclerView de Catálogo, na MainActivity: Tive problemas para manter apenas os itens raros com títulos em vermelho por causa da própria implementação do RecyclerView, creio eu. Como ele reutiliza itens durante a listagem, quadrinhos que não eram raros acabavam ficando com título em vermelho. Como ~~gambiarra~~ solução, o CatalogoAdapter irá sempre setar a cor dos títulos dos quadrinhos sempre que forem visualizados na tela (preto para comuns, vermelho para raros).</br>
+  •Há uma <italic>leve</italic> falha de otimização no RecyclerView de Catálogo, na MainActivity: Tive problemas para manter apenas os itens raros com títulos em vermelho por causa da própria implementação do RecyclerView, creio eu. Como ele reutiliza itens durante a listagem, quadrinhos que não eram raros acabavam ficando com título em vermelho. Como <strike>gambiarra</strike> solução, o CatalogoAdapter irá sempre setar a cor dos títulos dos quadrinhos sempre que forem visualizados na tela (preto para comuns, vermelho para raros).</br>
   •Testes não foram implementados por falta de tempo :(</br>
   •Sem pensar direito, foram criadas duas tabelas no banco de dados, mas apenas uma iria dar conta bastando adicionar uma coluna para informar se está ou não no carrinho.</br>
   •Adicionar uma thread de carregamento para informar o usuário de que o consumo de web service está em andamento.
