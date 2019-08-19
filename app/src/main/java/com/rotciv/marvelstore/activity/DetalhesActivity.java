@@ -60,7 +60,7 @@ public class DetalhesActivity extends AppCompatActivity {
         Glide.with(DetalhesActivity.this).load(url + "/detail.jpg").into(comicImagem);
         textTitle.setText(title);
         textDescricao.setText(description);
-        textPreco.setText("$" + preco);
+        textPreco.setText("Preço: $" + preco);
 
         if (raridade == 0){
             textRaridade.setText("Comum");

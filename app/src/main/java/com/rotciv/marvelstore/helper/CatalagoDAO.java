@@ -38,6 +38,7 @@ public class CatalagoDAO implements ICatalagoDAO{
             cv.put("price", comic.getPrices().get(0).getPrice());
             cv.put("raridade", comic.getRaridade());
             cv.put("url", comic.getThumbnail().getPath());
+            cv.put("description", comic.getDescription());
 
             try {
                 write.insert(DbHelper.TABELA_CATALOGO, null, cv);
@@ -69,11 +70,13 @@ public class CatalagoDAO implements ICatalagoDAO{
             Double price = c.getDouble(c.getColumnIndex("price"));
             String title = c.getString(c.getColumnIndex("title"));
             String url = c.getString(c.getColumnIndex("url"));
+            String description = c.getString(c.getColumnIndex("description"));
 
             comic.setId(id.toString());
             comic.getThumbnail().setPath(url);
             comic.getPrices().get(0).setPrice(price.toString());
             comic.setTitle(title);
+            comic.setDescription(description);
             if (raridade == 0)
                 comic.setRaridade(0);
             else
