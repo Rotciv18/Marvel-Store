@@ -40,6 +40,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
+    /*Declaraçoes de todas as variáveis relevantes para a activity.
+            Todos os dados relevantes estão na lista 'results' ao carregar o JSON, portanto
+        é utilizada uma lista de Result 'comics' para guardar todos os dados,
+        que serão inicialmente consumidas e guardadas em 'catalogo'
+            comics é relevante para uma melhor utilização do RecyclerView
+     */
     String baseUrl = "https://gateway.marvel.com/v1/public/";
     Retrofit retrofit;
     Catalog catalogo = new Catalog();
@@ -53,13 +59,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); //esconde a ActionBar
 
+        //Configurações iniciais
         catalagoDAO = new CatalagoDAO(getApplicationContext());
         db = new DbHelper(getApplicationContext());
-
         recyclerView = findViewById(R.id.recyclerView);
 
+        //Se a tabela 'catalogo' já estiver criada, a lista deve ser gerada através desta tabela
         if (!existeTabela()) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(baseUrl)
@@ -72,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Realiza o processo de web service e guarda todos os dados relevantes no DB
     public void recuperarCatalogo() {
         DataService service = retrofit.create(DataService.class);
         Call<Catalog> call = service.callCatalog();
@@ -84,11 +92,12 @@ public class MainActivity extends AppCompatActivity {
                     comics = catalogo.getData().getResults();
 
                     sorteiaRaridade();
-                    iniciaRecyclerView();
+                    iniciaRecyclerView(); //lista itens na tela
                     salvarDB();
                 }
             }
 
+            //onFailure é chamado se houver falha em consumir o REST
             @Override
             public void onFailure(Call<Catalog> call, Throwable t) {
                 Log.e("Erro", t.getMessage());
@@ -100,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        recreate();
+                        recreate(); //reinicia activity
                     }
                 });
                 dialog.create();
@@ -134,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Result comic = comics.get(position);
-                detalharComic(comic);
+                detalharComic(comic); //Abre os detalhes daquele quadrinho
             }
 
             @Override
@@ -150,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         ));
     }
 
+    //Passa todos os dados relevantes para a activity de Detalhes
     public void detalharComic(Result comic) {
         Intent intent = new Intent(getApplicationContext(), DetalhesActivity.class);
 

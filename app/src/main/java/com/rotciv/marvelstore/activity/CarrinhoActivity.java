@@ -45,17 +45,24 @@ public class CarrinhoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carrinho);
         getSupportActionBar().hide();
 
+        //Configurações iniciais
         carrinhoDAO = new CarrinhoDAO(getApplicationContext());
         botaoComprar = findViewById(R.id.botaoComprar);
         textCupom = findViewById(R.id.textCupom);
         recyclerView = findViewById(R.id.recyclerView2);
 
+        //recupera todos os itens da tabela 'carrinho'
         recuperaItens();
 
+        //lista os itens
         iniciaRecyclerView();
 
         calculaValorTotal(":)");
 
+        //Põe um Listener no campo de texto. O preço deve atualizar se
+        //o campo for preenchido de forma adequada
+            //cupomcomum para cupons comuns
+            //cupomraro para cupons raros
         cupomListener();
 
     }
@@ -139,7 +146,7 @@ public class CarrinhoActivity extends AppCompatActivity {
             desconto = 0.9;
 
         if (cupom.equals("raro")) {
-            desconto = 0.8;
+            desconto = 0.75;
 
             for (int i = 0; i < comics.size(); i++) {
                 Double valor = Double.parseDouble(comics.get(i).getPrices().get(0).getPrice());

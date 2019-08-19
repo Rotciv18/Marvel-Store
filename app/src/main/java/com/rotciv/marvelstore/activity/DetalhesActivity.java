@@ -35,8 +35,8 @@ public class DetalhesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes);
         getSupportActionBar().hide();
 
+        //Configurações iniciais
         carrinhoDAO = new CarrinhoDAO(getApplicationContext());
-
         comicImagem = findViewById(R.id.comicImagem);
         textPreco = findViewById(R.id.textPreco);
         textRaridade = findViewById(R.id.textRaridade);
@@ -44,6 +44,9 @@ public class DetalhesActivity extends AppCompatActivity {
         textDescricao = findViewById(R.id.textDescricao);
 
         recuperarDados();
+
+        //Atualiza views com dados passados da intent
+        setViews();
     }
 
     public void recuperarDados(){
@@ -54,9 +57,9 @@ public class DetalhesActivity extends AppCompatActivity {
         preco = (String) dados.getSerializable("price");
         raridade = (Integer) dados.getSerializable("raridade");
         description = (String) dados.getSerializable("description");
+    }
 
-
-        //Atualiza views com dados passados da intent
+    public void setViews(){
         Glide.with(DetalhesActivity.this).load(url + "/detail.jpg").into(comicImagem);
         textTitle.setText(title);
         textDescricao.setText(description);
