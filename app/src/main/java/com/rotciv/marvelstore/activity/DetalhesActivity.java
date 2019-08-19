@@ -21,10 +21,10 @@ import java.util.ArrayList;
 public class DetalhesActivity extends AppCompatActivity {
 
     ImageView comicImagem;
-    TextView textTitle, textRaridade, textPreco;
+    TextView textTitle, textRaridade, textPreco, textDescricao;
     Result comic = new Result();
 
-    String id, title, url, preco;
+    String id, title, url, preco, description;
     Integer raridade;
 
     CarrinhoDAO carrinhoDAO;
@@ -41,6 +41,7 @@ public class DetalhesActivity extends AppCompatActivity {
         textPreco = findViewById(R.id.textPreco);
         textRaridade = findViewById(R.id.textRaridade);
         textTitle = findViewById(R.id.textTitle);
+        textDescricao = findViewById(R.id.textDescricao);
 
         recuperarDados();
     }
@@ -52,11 +53,13 @@ public class DetalhesActivity extends AppCompatActivity {
         title = (String) dados.getSerializable("title");
         preco = (String) dados.getSerializable("price");
         raridade = (Integer) dados.getSerializable("raridade");
+        description = (String) dados.getSerializable("description");
 
 
         //Atualiza views com dados passados da intent
-        Glide.with(DetalhesActivity.this).load(url + "/landscape_large.jpg").into(comicImagem);
+        Glide.with(DetalhesActivity.this).load(url + "/detail.jpg").into(comicImagem);
         textTitle.setText(title);
+        textDescricao.setText(description);
         textPreco.setText("$" + preco);
 
         if (raridade == 0){

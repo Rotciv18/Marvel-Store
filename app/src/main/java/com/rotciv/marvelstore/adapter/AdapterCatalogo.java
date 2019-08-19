@@ -47,11 +47,10 @@ public class AdapterCatalogo extends RecyclerView.Adapter<AdapterCatalogo.MyView
         //Para evitar que itens que não são raros fiquem vermelhos, por causa da implementação do RecyclerView
         myViewHolder.comicTitulo.setTextColor(Color.BLACK);
         if (comic.getRaridade() == 1) {
-            Log.i("EXECUTANDO "+ comic.getTitle() + ": ", comic.getRaridade().toString());
             myViewHolder.comicTitulo.setTextColor(Color.RED);
         }
-        myViewHolder.comicPreco.setText(comic.getPrices().get(0).getPrice());
-        Glide.with(context).load(url + "/standard_fantastic.jpg").into(myViewHolder.imagemComic);
+        myViewHolder.comicPreco.setText("$" + comic.getPrices().get(0).getPrice());
+        Glide.with(context).load(url + "/detail.jpg").into(myViewHolder.imagemComic);
     }
 
 

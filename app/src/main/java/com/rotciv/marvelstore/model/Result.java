@@ -11,6 +11,7 @@ public class Result {
     private Thumbnail thumbnail;
     private List<Price> prices;
     private Integer raridade = 0;
+    private String description;
 
     public String getId() {
         return id;
@@ -50,5 +51,13 @@ public class Result {
 
     public void setRaridade(Integer raridade) {
         this.raridade = raridade;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

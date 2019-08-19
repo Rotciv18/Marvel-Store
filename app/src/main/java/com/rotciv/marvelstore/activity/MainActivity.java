@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         catalagoDAO = new CatalagoDAO(getApplicationContext());
         db = new DbHelper(getApplicationContext());
@@ -162,6 +163,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("price", comic.getPrices().get(0).getPrice());
 
         intent.putExtra("id", comic.getId());
+
+        intent.putExtra("description", comic.getDescription());
 
         startActivity(intent);
     }
