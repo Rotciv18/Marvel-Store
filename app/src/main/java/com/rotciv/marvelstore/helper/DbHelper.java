@@ -18,10 +18,10 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sqlCarrinho = "CREATE TABLE IF NOT EXISTS " + TABELA_CARRINHO + " (id INTEGER PRIMARY KEY "
-                     + ", title TEXT, price REAL, raridade INTEGER, description TEXT ); ";
+                     + ", title TEXT, price REAL, raridade INTEGER); ";
 
         String sqlCatalogo = "CREATE TABLE IF NOT EXISTS " + TABELA_CATALOGO + " (id INTEGER PRIMARY KEY "
-                     + ", title TEXT, price REAL, raridade INTEGER, url TEXT);";
+                     + ", title TEXT, price REAL, raridade INTEGER, url TEXT, description TEXT);";
 
         try {
             db.execSQL(sqlCarrinho);
