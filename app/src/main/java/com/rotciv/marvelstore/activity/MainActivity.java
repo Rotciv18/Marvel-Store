@@ -1,9 +1,12 @@
 package com.rotciv.marvelstore.activity;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Parcelable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -88,6 +91,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Catalog> call, Throwable t) {
                 Log.e("Erro", t.getMessage());
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+
+                dialog.setTitle("Erro");
+                dialog.setMessage("Erro ao carregar o catálogo. Certifique-se de que está com acesso à internet");
+                dialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        recreate();
+                    }
+                });
+                dialog.create();
+                dialog.show();
             }
         });
     }
@@ -100,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         //configura RecyclerView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        //recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         recyclerView.setAdapter(adapter);
 
@@ -184,5 +200,10 @@ public class MainActivity extends AppCompatActivity {
             }
             comics.get(index).setRaridade(1);
         }
+    }
+
+    @Override
+    public void recreate() {
+        super.recreate();
     }
 }
