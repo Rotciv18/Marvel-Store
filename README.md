@@ -1,7 +1,7 @@
 # Marvel-Store
 
-Marvel Store é um app feito para disponibilizar diversos quadrinhos puxados da api https://developer.marvel.com e simular a venda dos mesmos.
-
+Marvel Store é um app feito para disponibilizar diversos quadrinhos puxados da api https://developer.marvel.com e simular a venda dos mesmos.</br>
+![](gif_demo.gif)
 <h2>Funcionalidades</h2>
 <p>
 •O aplicativo lista todas as comics da api, sendo possível clicar em cada uma para ver mais detalhes das mesmas e adicioná-las ao carrinho, se desejado.</br>
